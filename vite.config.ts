@@ -41,6 +41,14 @@ export default defineConfig(async () => {
     run('caddy stop').then(() => run('caddy start', 'Caddy is running')),
   ]);
 
+  console.log("no browser?",process.env.NOBROWSER);
+  if (process.env.NOBROWSER!==undefined)
+  return {                                server: {                               port: 7777,
+      host: 'localhost',
+    },                                    plugins: [                              directoryPlugin({                       baseDir: __dirname,                 }),
+    ],
+  };
+  else
   return {
     server: {
       port: 7777,
